@@ -15,6 +15,7 @@
 		BD584AB5244BDD5800F7D9EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD584AB3244BDD5800F7D9EC /* LaunchScreen.storyboard */; };
 		BD584AC0244BDD5800F7D9EC /* CodeDesignAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ABF244BDD5800F7D9EC /* CodeDesignAppTests.swift */; };
 		BD584ACB244BDD5800F7D9EC /* CodeDesignAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ACA244BDD5800F7D9EC /* CodeDesignAppUITests.swift */; };
+		BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584AD8244CDE6600F7D9EC /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BD584AC6244BDD5800F7D9EC /* CodeDesignAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeDesignAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD584ACA244BDD5800F7D9EC /* CodeDesignAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeDesignAppUITests.swift; sourceTree = "<group>"; };
 		BD584ACC244BDD5800F7D9EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD584AD8244CDE6600F7D9EC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				BD584AA8244BDD5700F7D9EC /* AppDelegate.swift */,
 				BD584AAA244BDD5700F7D9EC /* SceneDelegate.swift */,
 				BD584AAC244BDD5700F7D9EC /* ContentView.swift */,
+				BD584AD8244CDE6600F7D9EC /* MenuView.swift */,
 				BD584AAE244BDD5800F7D9EC /* Assets.xcassets */,
 				BD584AB3244BDD5800F7D9EC /* LaunchScreen.storyboard */,
 				BD584AB6244BDD5800F7D9EC /* Info.plist */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD584AA9244BDD5700F7D9EC /* AppDelegate.swift in Sources */,
+				BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */,
 				BD584AAB244BDD5700F7D9EC /* SceneDelegate.swift in Sources */,
 				BD584AAD244BDD5700F7D9EC /* ContentView.swift in Sources */,
 			);
