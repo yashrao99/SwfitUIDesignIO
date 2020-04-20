@@ -43,7 +43,7 @@ struct MenuView: View {
             .frame(height: 300)
                 // bg Color with gradient
                 // Cutomizable gradient views, you can init Color(Color_literal) which provides you the color-picker. The color picker can be used with direct Hex/RGB as done below to pick colors
-                .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), Color(#colorLiteral(red: 0.8705882353, green: 0.8941176471, blue: 0.9450980392, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), Color(#colorLiteral(red: 0.8705882353, green: 0.8941176471, blue: 0.9450980392, alpha: 1))]), startPoint: .top, endPoint: .bottom))
                 // This clips the corners of the view creating the smooth rounded corners
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 // Adds the drop-shadow
