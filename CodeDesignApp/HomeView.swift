@@ -31,11 +31,17 @@ struct HomeView: View {
             // SCROLL VIEW, setting the direction on the init is NOT the scrolling direction
             ScrollView(.horizontal, showsIndicators: false) {
                 // Embedding the items in either or HStack or VStack will determine the scroll direction
-                HStack(spacing: 30) {
+                HStack(spacing: 20) {
                     // cmd + click -> repeat creates simple, editable for loop to repeat UI elements
                     // As we create the Hstack, we can use the ForEach to intialize each sectionView with a sectionData datasource to populate the Hstack
                     ForEach(sectionData) { item in
-                        SectionView(section: item)
+                        // Geometry reader allows us to apply cool animations, same concept as HStack and Vstack in terms of container
+                        GeometryReader { geometry in
+                            SectionView(section: item)
+                                // We are adding a 3D effect to the top right corner (minX). The rotation subtracts 30 from the minX, which flattens it for our view. The division by 20 slows the animation down. The +/- determines the direction. We use the Y-axis on the rotation to give it depth about the y-axis
+                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 30) / -20), axis: (x: 0, y: 10, z: 0))
+                        }
+                        .frame(width: 275, height: 275)
                     }
                 }
                 // Adds 30 pixels from all sides of the HStack
