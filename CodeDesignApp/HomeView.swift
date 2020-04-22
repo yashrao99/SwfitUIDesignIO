@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var showProfile: Bool
+    @State var showUpdate = false
 
     var body: some View {
         VStack {
@@ -20,6 +21,22 @@ struct HomeView: View {
                 // spacer pushes the title and the avatar image to opposite sides
                 Spacer()
                 AvatarView(showProfile: $showProfile)
+
+                Button(action: { self.showUpdate.toggle() }) {
+                    Image(systemName: "bell")
+                        .renderingMode(.original)
+                        .font(.system(size: 16, weight: .medium))
+                        .frame(width: 36, height: 36)
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                }
+                    // MODAL PRESENTATION IN SWIFT UI
+                    // This .sheet creates a view, defined within the closure and is bound to the local state of `showUpdate`. That means if showPresented is true, then isPresented is true and our ContentView object is displayed modally.
+                .sheet(isPresented: $showUpdate) {
+                    ContentView()
+                }
             }
             // Adds teh 16 pixels on all 4 sides
             .padding(.horizontal)
