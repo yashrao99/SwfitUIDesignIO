@@ -14,8 +14,8 @@ struct UpdateList: View {
         NavigationView {
             // This List, creates a tableView. You can pass in your viewModel struct directly into this List
             List(updateData) { update in
-                // This link is the desination. If this cell is selected, then push to a new view with the struct field of text
-                NavigationLink(destination: Text(update.text)) {
+                // This link is the desination. If this cell is selected, then push to a new view with the data model. Must be defined as a var in the view we are pushing to
+                NavigationLink(destination: UpdateDetail(update: update)) {
                     // This is the UITableViewCell customization
                     HStack {
                         // Add the image on the left side of the Hstack (goes first)
