@@ -15,6 +15,7 @@ struct RingView: View {
     var height: CGFloat = 88
     var width: CGFloat = 88
     var percent: CGFloat = 88
+    @Binding var show: Bool
 
     var body: some View {
         // These values depend on the values defined in the struct level. Now we can access those values, and then use them in our calculations when building the UI component. Go through each component and ensure that the multiplier is set on the values which need it. Then you can change the frame and width and the UI component will scale properly.
@@ -29,7 +30,7 @@ struct RingView: View {
             // this creates the actual circle used to track progress
             Circle()
                 // The trim trims the circle. The values work differently. From 0.1 to 1 means that it will trim 0-10% while keeping 10-100%.
-                .trim(from: progress, to: 1)
+                .trim(from: show ? progress : 1, to: 1)
                 // LinearGradient - can use an array of color literals and then it will auto-apply the gradient for you
                 // LineWidth = width of line
                 // line cap & linejoin - when the line is dashed, this affects how each dash looks
@@ -47,12 +48,15 @@ struct RingView: View {
         Text("\(Int(percent))%")
             .font(.system(size: 14 * multiplier))
             .fontWeight(.bold)
+            .onTapGesture {
+                self.show.toggle()
+            }
         }
     }
 }
 
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView()
+        RingView(show: .constant(true))
     }
 }

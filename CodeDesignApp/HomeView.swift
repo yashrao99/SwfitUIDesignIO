@@ -45,6 +45,20 @@ struct HomeView: View {
             // Adds additional 30 to the top anchor (46 total)
             .padding(.top, 30)
             
+            // This creates the ringView right below our top menu view. We also add some text to the right of the RingView.
+            HStack(spacing: 12.0) {
+                RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), height: 44, width: 44, percent: 68, show: .constant(true))
+                VStack(alignment: .leading, spacing: 4.0) {
+                    Text("6 minutes left").font(.subheadline).fontWeight(.bold)
+                    Text("Watched 10 mins today").font(.caption)
+                }
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+            
             // SCROLL VIEW, setting the direction on the init is NOT the scrolling direction
             ScrollView(.horizontal, showsIndicators: false) {
                 // Embedding the items in either or HStack or VStack will determine the scroll direction
