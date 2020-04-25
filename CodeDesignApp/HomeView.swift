@@ -35,7 +35,7 @@ struct HomeView: View {
                     // MODAL PRESENTATION IN SWIFT UI
                     // This .sheet creates a view, defined within the closure and is bound to the local state of `showUpdate`. That means if showPresented is true, then isPresented is true and our ContentView object is displayed modally.
                 .sheet(isPresented: $showUpdate) {
-                    ContentView()
+                    UpdateList()
                 }
             }
             // Adds teh 16 pixels on all 4 sides

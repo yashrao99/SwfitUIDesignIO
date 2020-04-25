@@ -20,6 +20,7 @@
 		BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584AD8244CDE6600F7D9EC /* MenuView.swift */; };
 		BD584ADC244D2FAA00F7D9EC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ADB244D2FAA00F7D9EC /* Home.swift */; };
 		BD584ADE244D3BFB00F7D9EC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ADD244D3BFB00F7D9EC /* HomeView.swift */; };
+		BD999A112454BF7C00C70589 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD999A102454BF7C00C70589 /* UpdateStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		BD584AD8244CDE6600F7D9EC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		BD584ADB244D2FAA00F7D9EC /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		BD584ADD244D3BFB00F7D9EC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BD999A102454BF7C00C70589 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				BD584ADD244D3BFB00F7D9EC /* HomeView.swift */,
 				BD0AD87E244FDB33005CF4D1 /* UpdateDetail.swift */,
 				BD0AD87C244FD507005CF4D1 /* UpdateList.swift */,
+				BD999A102454BF7C00C70589 /* UpdateStore.swift */,
 				BD584AD8244CDE6600F7D9EC /* MenuView.swift */,
 				BD584AAE244BDD5800F7D9EC /* Assets.xcassets */,
 				BD584AB3244BDD5800F7D9EC /* LaunchScreen.storyboard */,
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD584AA9244BDD5700F7D9EC /* AppDelegate.swift in Sources */,
+				BD999A112454BF7C00C70589 /* UpdateStore.swift in Sources */,
 				BD0AD87D244FD507005CF4D1 /* UpdateList.swift in Sources */,
 				BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */,
 				BD0AD87F244FDB33005CF4D1 /* UpdateDetail.swift in Sources */,
