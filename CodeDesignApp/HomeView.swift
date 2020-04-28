@@ -11,84 +11,103 @@ import SwiftUI
 struct HomeView: View {
     @Binding var showProfile: Bool
     @State var showUpdate = false
+    @Binding var showContent: Bool
 
     var body: some View {
-        VStack {
-            // This HStack is the header at the top
-            HStack {
-                Text("Watching")
-                    .font(.system(size: 28, weight: .bold))
-                    .modifier(CustomFontModifier())
-                // spacer pushes the title and the avatar image to opposite sides
-                Spacer()
-                AvatarView(showProfile: $showProfile)
+        ScrollView {
+            VStack {
+                // This HStack is the header at the top
+                HStack {
+                    Text("Watching")
+                        .font(.system(size: 28, weight: .bold))
+                        .modifier(CustomFontModifier())
+                    // spacer pushes the title and the avatar image to opposite sides
+                    Spacer()
+                    AvatarView(showProfile: $showProfile)
 
-                Button(action: { self.showUpdate.toggle() }) {
-                    Image(systemName: "bell")
-                        .renderingMode(.original)
-                        .font(.system(size: 16, weight: .medium))
-                        .frame(width: 36, height: 36)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-                }
-                    // MODAL PRESENTATION IN SWIFT UI
-                    // This .sheet creates a view, defined within the closure and is bound to the local state of `showUpdate`. That means if showPresented is true, then isPresented is true and our ContentView object is displayed modally.
-                .sheet(isPresented: $showUpdate) {
-                    UpdateList()
-                }
-            }
-            // Adds teh 16 pixels on all 4 sides
-            .padding(.horizontal)
-            // Adds additional 14 to the leading anchor (30 total)
-            .padding(.leading, 14)
-            // Adds additional 30 to the top anchor (46 total)
-            .padding(.top, 30)
-            
-            // This creates the ringView right below our top menu view. We also add some text to the right of the RingView.
-            ScrollView(.horizontal, showsIndicators: false) {
-                WatchRingsView()
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 30)
-            }
-            
-            // SCROLL VIEW, setting the direction on the init is NOT the scrolling direction
-            ScrollView(.horizontal, showsIndicators: false) {
-                // Embedding the items in either or HStack or VStack will determine the scroll direction
-                HStack(spacing: 20) {
-                    // cmd + click -> repeat creates simple, editable for loop to repeat UI elements
-                    // As we create the Hstack, we can use the ForEach to intialize each sectionView with a sectionData datasource to populate the Hstack
-                    ForEach(sectionData) { item in
-                        // Geometry reader allows us to apply cool animations, same concept as HStack and Vstack in terms of container
-                        GeometryReader { geometry in
-                            SectionView(section: item)
-                                // We are adding a 3D effect to the top right corner (minX). The rotation subtracts 30 from the minX, which flattens it for our view. The division by 20 slows the animation down. The +/- determines the direction. We use the Y-axis on the rotation to give it depth about the y-axis
-                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 30) / -20), axis: (x: 0, y: 10, z: 0))
-                        }
-                        .frame(width: 275, height: 275)
+                    Button(action: { self.showUpdate.toggle() }) {
+                        Image(systemName: "bell")
+                            .renderingMode(.original)
+                            .font(.system(size: 16, weight: .medium))
+                            .frame(width: 36, height: 36)
+                            .background(Color.white)
+                            .clipShape(Circle())
+                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                    }
+                        // MODAL PRESENTATION IN SWIFT UI
+                        // This .sheet creates a view, defined within the closure and is bound to the local state of `showUpdate`. That means if showPresented is true, then isPresented is true and our ContentView object is displayed modally.
+                    .sheet(isPresented: $showUpdate) {
+                        UpdateList()
                     }
                 }
-                // Adds 30 pixels from all sides of the HStack
-                .padding(30)
-                // Adds additional 30 pixels to the bottom of the HStack, total 60
-                .padding(.bottom, 30)
+                // Adds teh 16 pixels on all 4 sides
+                .padding(.horizontal)
+                // Adds additional 14 to the leading anchor (30 total)
+                .padding(.leading, 14)
+                // Adds additional 30 to the top anchor (46 total)
+                .padding(.top, 30)
+                
+                // This creates the ringView right below our top menu view. We also add some text to the right of the RingView.
+                ScrollView(.horizontal, showsIndicators: false) {
+                    WatchRingsView()
+                        .padding(.horizontal, 30)
+                        .padding(.bottom, 30)
+                        .onTapGesture {
+                            self.showContent = true
+                    }
+                }
+                
+                // SCROLL VIEW, setting the direction on the init is NOT the scrolling direction
+                ScrollView(.horizontal, showsIndicators: false) {
+                    // Embedding the items in either or HStack or VStack will determine the scroll direction
+                    HStack(spacing: 20) {
+                        // cmd + click -> repeat creates simple, editable for loop to repeat UI elements
+                        // As we create the Hstack, we can use the ForEach to intialize each sectionView with a sectionData datasource to populate the Hstack
+                        ForEach(sectionData) { item in
+                            // Geometry reader allows us to apply cool animations, same concept as HStack and Vstack in terms of container
+                            GeometryReader { geometry in
+                                SectionView(section: item)
+                                    // We are adding a 3D effect to the top right corner (minX). The rotation subtracts 30 from the minX, which flattens it for our view. The division by 20 slows the animation down. The +/- determines the direction. We use the Y-axis on the rotation to give it depth about the y-axis
+                                    .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 30) / -20), axis: (x: 0, y: 10, z: 0))
+                            }
+                            .frame(width: 275, height: 275)
+                        }
+                    }
+                    // Adds 30 pixels from all sides of the HStack
+                    .padding(30)
+                    // Adds additional 30 pixels to the bottom of the HStack, total 60
+                    .padding(.bottom, 30)
+                }
+                .offset(y: -30)
+                HStack {
+                    Text("Courses")
+                        .font(.title).bold()
+                    
+                    Spacer()
+                }
+                .padding(.leading, 30)
+                .offset(y: -60)
+                SectionView(section: sectionData[2], width: screen.width - 60, height: 275)
+                    .offset(y: -60)
+                // This spacer pushes the header to the top
+                Spacer()
             }
-            // This spacer pushes the header to the top
-            Spacer()
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showProfile: .constant(false))
+        HomeView(showProfile: .constant(false), showContent: .constant(false))
     }
 }
 
 // This creates the sectionView that repeats in our scroll view
 struct SectionView: View {
     var section: Section
+    var width: CGFloat = 275
+    var height: CGFloat = 275
     var body: some View {
         VStack {
             // Creates the top element with title and image
@@ -114,7 +133,7 @@ struct SectionView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
             // Sets a hard-coded frame
-        .frame(width: 275, height: 275)
+        .frame(width: width, height: height)
             .background(section.color)
             // round corners
         .cornerRadius(30)

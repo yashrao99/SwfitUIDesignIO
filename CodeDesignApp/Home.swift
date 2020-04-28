@@ -11,6 +11,7 @@ import SwiftUI
 struct Home: View {
     @State var showProfile = false
     @State var viewState = CGSize.zero
+    @State var showContent = false
     
     var body: some View {
         ZStack {
@@ -18,10 +19,19 @@ struct Home: View {
                 // This ignores safearelayoutguide and stretches to all edges
                 .edgesIgnoringSafeArea(.all)
 
-            HomeView(showProfile: $showProfile)
+            HomeView(showProfile: $showProfile, showContent: $showContent)
             // Since background ignores safe area, need to manually add the top spacing for the status bar
                 .padding(.top, 44)
-                .background(Color.white)
+                // On our main background, we can actually set a gradient layer with a defined height, and then fill the rest in with the normal background color which we did here
+                .background(
+                    VStack {
+                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color.white]),
+                                       startPoint: .top, endPoint: .bottom)
+                        .frame(height: 200)
+                        Spacer()
+                }
+                    .background(Color.white)
+            )
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
                 // If profile is shown, then bump this view up 450 pixels
@@ -62,6 +72,32 @@ struct Home: View {
                 self.viewState = .zero
             }
             )
+            // This uses the state to determine whether to show an entire view
+            if showContent {
+                // We fill the view, don't leave teh weird safe-area space for the new view
+                Color.white.edgesIgnoringSafeArea(.all)
+                // The entire screen of this view will show up
+                ContentView()
+                VStack {
+                    HStack {
+                        Spacer()
+                        // We created an X button in the top right using VStack, HStack, and spacers
+                        Image(systemName: "xmark")
+                            .frame(width: 36, height: 36)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .clipShape(Circle())
+                    }
+                    Spacer()
+                }
+                .offset(x: -16, y: 16)
+                    // this animates our button in from teh top view. We won't see the animation out because the background colors of the other views in this will block the button animating out
+                .transition(.move(edge: .top))
+                .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0))
+                .onTapGesture {
+                    self.showContent = false
+                }
+            }
         }
     }
 }
