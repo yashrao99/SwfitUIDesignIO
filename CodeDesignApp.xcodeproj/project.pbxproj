@@ -11,6 +11,8 @@
 		BD0AD87F244FDB33005CF4D1 /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0AD87E244FDB33005CF4D1 /* UpdateDetail.swift */; };
 		BD1784F62454C3C400977286 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1784F52454C3C400977286 /* TabBar.swift */; };
 		BD1784F82454C6BE00977286 /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1784F72454C6BE00977286 /* RingView.swift */; };
+		BD1785172457B9A000977286 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1785162457B99F00977286 /* Modifiers.swift */; };
+		BD17851B2457BBDD00977286 /* Work_Sans in Resources */ = {isa = PBXBuildFile; fileRef = BD17851A2457BBDD00977286 /* Work_Sans */; };
 		BD584AA9244BDD5700F7D9EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584AA8244BDD5700F7D9EC /* AppDelegate.swift */; };
 		BD584AAB244BDD5700F7D9EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584AAA244BDD5700F7D9EC /* SceneDelegate.swift */; };
 		BD584AAD244BDD5700F7D9EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584AAC244BDD5700F7D9EC /* ContentView.swift */; };
@@ -47,6 +49,8 @@
 		BD0AD87E244FDB33005CF4D1 /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
 		BD1784F52454C3C400977286 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		BD1784F72454C6BE00977286 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		BD1785162457B99F00977286 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		BD17851A2457BBDD00977286 /* Work_Sans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Work_Sans; sourceTree = "<group>"; };
 		BD584AA5244BDD5700F7D9EC /* CodeDesignApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeDesignApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD584AA8244BDD5700F7D9EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD584AAA244BDD5700F7D9EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				BD584AAA244BDD5700F7D9EC /* SceneDelegate.swift */,
 				BD584AAC244BDD5700F7D9EC /* ContentView.swift */,
 				BD1784F72454C6BE00977286 /* RingView.swift */,
+				BD1785162457B99F00977286 /* Modifiers.swift */,
 				BD584ADB244D2FAA00F7D9EC /* Home.swift */,
 				BD584ADD244D3BFB00F7D9EC /* HomeView.swift */,
 				BD0AD87E244FDB33005CF4D1 /* UpdateDetail.swift */,
@@ -127,6 +132,7 @@
 				BD584AD8244CDE6600F7D9EC /* MenuView.swift */,
 				BD1784F52454C3C400977286 /* TabBar.swift */,
 				BD584AAE244BDD5800F7D9EC /* Assets.xcassets */,
+				BD17851A2457BBDD00977286 /* Work_Sans */,
 				BD584AB3244BDD5800F7D9EC /* LaunchScreen.storyboard */,
 				BD584AB6244BDD5800F7D9EC /* Info.plist */,
 				BD584AB0244BDD5800F7D9EC /* Preview Content */,
@@ -264,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD17851B2457BBDD00977286 /* Work_Sans in Resources */,
 				BD584AB5244BDD5800F7D9EC /* LaunchScreen.storyboard in Resources */,
 				BD584AB2244BDD5800F7D9EC /* Preview Assets.xcassets in Resources */,
 				BD584AAF244BDD5800F7D9EC /* Assets.xcassets in Resources */,
@@ -295,6 +302,7 @@
 				BD999A112454BF7C00C70589 /* UpdateStore.swift in Sources */,
 				BD0AD87D244FD507005CF4D1 /* UpdateList.swift in Sources */,
 				BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */,
+				BD1785172457B9A000977286 /* Modifiers.swift in Sources */,
 				BD0AD87F244FDB33005CF4D1 /* UpdateDetail.swift in Sources */,
 				BD1784F82454C6BE00977286 /* RingView.swift in Sources */,
 				BD584ADC244D2FAA00F7D9EC /* Home.swift in Sources */,
