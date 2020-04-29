@@ -24,6 +24,7 @@
 		BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584AD8244CDE6600F7D9EC /* MenuView.swift */; };
 		BD584ADC244D2FAA00F7D9EC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ADB244D2FAA00F7D9EC /* Home.swift */; };
 		BD584ADE244D3BFB00F7D9EC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ADD244D3BFB00F7D9EC /* HomeView.swift */; };
+		BD6342D92459137F0006B95E /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6342D82459137F0006B95E /* CourseList.swift */; };
 		BD999A112454BF7C00C70589 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD999A102454BF7C00C70589 /* UpdateStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		BD584AD8244CDE6600F7D9EC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		BD584ADB244D2FAA00F7D9EC /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		BD584ADD244D3BFB00F7D9EC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BD6342D82459137F0006B95E /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		BD999A102454BF7C00C70589 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 				BD584ADB244D2FAA00F7D9EC /* Home.swift */,
 				BD584ADD244D3BFB00F7D9EC /* HomeView.swift */,
 				BD0AD87E244FDB33005CF4D1 /* UpdateDetail.swift */,
+				BD6342D82459137F0006B95E /* CourseList.swift */,
 				BD0AD87C244FD507005CF4D1 /* UpdateList.swift */,
 				BD999A102454BF7C00C70589 /* UpdateStore.swift */,
 				BD584AD8244CDE6600F7D9EC /* MenuView.swift */,
@@ -310,6 +313,7 @@
 				BD584AAB244BDD5700F7D9EC /* SceneDelegate.swift in Sources */,
 				BD584AAD244BDD5700F7D9EC /* ContentView.swift in Sources */,
 				BD1784F62454C3C400977286 /* TabBar.swift in Sources */,
+				BD6342D92459137F0006B95E /* CourseList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
