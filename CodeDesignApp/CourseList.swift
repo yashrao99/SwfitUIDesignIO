@@ -9,9 +9,24 @@
 import SwiftUI
 
 struct CourseList: View {
+    // This currently uses 2 states, which will be changed in the next section
+    @State var show = false
+    @State var show2 = false
     var body: some View {
-        VStack {
-            CourseView()
+        ScrollView {
+            VStack(spacing: 30) {
+                CourseView(show: $show)
+                // This geometry reader allows us to take the second CourseView object and use it to animate this view to the top when pressed. We use the show2 state, so when pressed and it gets toggled. That's why it is a binding (show) in the courseView component. that's how it toggles the variable in the CourseList parent view.
+                GeometryReader { geometry in
+                    CourseView(show: self.$show2)
+                        // Animates the cell to the top, when pressed, or keeps it where iti s
+                        .offset(y: self.show2 ? -geometry.frame(in: .global).minY : 0)
+                }
+                .frame(height: show2 ? screen.height : 280)
+                    // When using geometry reader, the padding gets ignored. So we have to manually set it to screen.width - 60 so it looks identical to the first CourseList when not animated out.
+                .frame(maxWidth: show2 ? .infinity : screen.width - 60)
+            }
+            .frame(width: screen.width)
         }
     }
 }
@@ -23,7 +38,7 @@ struct CourseList_Previews: PreviewProvider {
 }
 
 struct CourseView: View {
-    @State var show = false
+    @Binding var show: Bool
     var body: some View {
         // This Z-stack allows us to have content underneath the existing card view. This aligns whichever component in the Z-stack to the top, and to the biggest component
         ZStack(alignment: .top) {
