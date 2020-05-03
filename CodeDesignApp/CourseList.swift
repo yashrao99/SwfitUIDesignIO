@@ -10,31 +10,43 @@ import SwiftUI
 
 struct CourseList: View {
     @State var courses = courseData
+    @State var active = false
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 30) {
-                Text("Courses")
-                    .font(.largeTitle).bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
-                    
-                // This geometry reader allows us to take the second CourseView object and use it to animate this view to the top when pressed. We use the show2 state, so when pressed and it gets toggled. That's why it is a binding (show) in the courseView component. that's how it toggles the variable in the CourseList parent view.
-                ForEach(courses.indices, id: \.self) { index in
-                    GeometryReader { geometry in
-                        CourseView(show: self.$courses[index].show, course: self.courses[index])
-                            // Animates the cell to the top, when pressed, or keeps it where iti s
-                            .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY : 0)
+        ZStack {
+            Color.black.opacity(active ? 0.5 : 0)
+                .animation(.linear)
+                .edgesIgnoringSafeArea(.all)
+            ScrollView {
+                VStack(spacing: 30) {
+                    Text("Courses")
+                        .font(.largeTitle).bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 30)
+                        .padding(.top, 30)
+                        .blur(radius: active ? 20 : 0)
+                        
+                    // This geometry reader allows us to take the second CourseView object and use it to animate this view to the top when pressed. We use the show2 state, so when pressed and it gets toggled. That's why it is a binding (show) in the courseView component. that's how it toggles the variable in the CourseList parent view.
+                    ForEach(courses.indices, id: \.self) { index in
+                        GeometryReader { geometry in
+                            CourseView(show: self.$courses[index].show, course: self.courses[index], active: self.$active)
+                                // Animates the cell to the top, when pressed, or keeps it where iti s
+                                .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                        }
+                            // Geometry reader pushes the other objects in the scroll View. This is fine if you're okay with it. But if not, manually set the frame here. In the actual CourseView object, set the frame to trigger on the outer most containerView to adapt to the full screen based on the state of Show in the dataModel. However, the z-stack needs to be fixed so that the expanded courseView takes over the screen completely and you don't see the other components
+                        .frame(height: 280)
+                            // When using geometry reader, the padding gets ignored. So we have to manually set it to screen.width - 60 so it looks identical to the first CourseList when not animated out.
+                            .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
+                            // DEFAULT - All objects default zIndex is 0, meaning that they are on the same plane. When one card is pressed, and show is toggled, it should take over the plane. Therefore, by setting the plane to 1 when card is shown, it takes over the screen without having to move the other objects
+                            .zIndex(self.courses[index].show ? 1 : 0)
                     }
-                        // Geometry reader pushes the other objects in the scroll View. This is fine if you're okay with it. But if not, manually set the frame here. In the actual CourseView object, set the frame to trigger on the outer most containerView to adapt to the full screen based on the state of Show in the dataModel. However, the z-stack needs to be fixed so that the expanded courseView takes over the screen completely and you don't see the other components
-                    .frame(height: 280)
-                        // When using geometry reader, the padding gets ignored. So we have to manually set it to screen.width - 60 so it looks identical to the first CourseList when not animated out.
-                        .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
                 }
+                .frame(width: screen.width)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             }
-            .frame(width: screen.width)
-            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                // This hides teh animation bar based on another state value in main container view
+            .statusBar(hidden: active ? true : false)
+            .animation(.linear)
         }
     }
 }
@@ -49,6 +61,7 @@ struct CourseView: View {
 
     @Binding var show: Bool
     var course: Course
+    @Binding var active: Bool
     
     var body: some View {
         // This Z-stack allows us to have content underneath the existing card view. This aligns whichever component in the Z-stack to the top, and to the biggest component
@@ -117,6 +130,7 @@ struct CourseView: View {
             .onTapGesture {
                 // toggles the state when tapped
                 self.show.toggle()
+                self.active.toggle()
             }
         }
         .frame(height: course.show ? screen.height : 280)
