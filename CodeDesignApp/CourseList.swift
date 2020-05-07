@@ -11,6 +11,7 @@ import SwiftUI
 struct CourseList: View {
     @State var courses = courseData
     @State var active = false
+    @State var activeIndex = -1
     
     var body: some View {
         ZStack {
@@ -29,9 +30,18 @@ struct CourseList: View {
                     // This geometry reader allows us to take the second CourseView object and use it to animate this view to the top when pressed. We use the show2 state, so when pressed and it gets toggled. That's why it is a binding (show) in the courseView component. that's how it toggles the variable in the CourseList parent view.
                     ForEach(courses.indices, id: \.self) { index in
                         GeometryReader { geometry in
-                            CourseView(show: self.$courses[index].show, course: self.courses[index], active: self.$active)
+                            CourseView(
+                                show: self.$courses[index].show,
+                                course: self.courses[index],
+                                active: self.$active,
+                                index: index,
+                                activeIndex: self.$activeIndex)
                                 // Animates the cell to the top, when pressed, or keeps it where iti s
                                 .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                                // This condition allows us to control the effects of the cards not being selected using activeIndex state. If no card is selected, it will default to the original state. However, since the binding is passed into each CourseView object, every time we toggle the card, the active index will be set. The other cards in the view will not be the active index, and will change opacity, scale, and animate out to the side
+                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
                         }
                             // Geometry reader pushes the other objects in the scroll View. This is fine if you're okay with it. But if not, manually set the frame here. In the actual CourseView object, set the frame to trigger on the outer most containerView to adapt to the full screen based on the state of Show in the dataModel. However, the z-stack needs to be fixed so that the expanded courseView takes over the screen completely and you don't see the other components
                         .frame(height: 280)
@@ -62,6 +72,8 @@ struct CourseView: View {
     @Binding var show: Bool
     var course: Course
     @Binding var active: Bool
+    var index: Int
+    @Binding var activeIndex: Int
     
     var body: some View {
         // This Z-stack allows us to have content underneath the existing card view. This aligns whichever component in the Z-stack to the top, and to the biggest component
@@ -131,6 +143,12 @@ struct CourseView: View {
                 // toggles the state when tapped
                 self.show.toggle()
                 self.active.toggle()
+                // If we're showing the card, set the active index so the other cards in the parent view know how to behave. Else, if nothing is showing, then set it to -1 (nothing active)
+                if self.show {
+                    self.activeIndex = self.index
+                } else {
+                    self.activeIndex = -1
+                }
             }
         }
         .frame(height: course.show ? screen.height : 280)
