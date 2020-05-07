@@ -176,6 +176,13 @@ struct CourseView: View {
                     self.activeIndex = -1
                 }
             }
+            // This is a cleaner way to create a new view to inject a different view. This doesn't have the gestures, but it does have the proper scrolling
+//            if show {
+//                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex)
+//                    .background(Color.white)
+//                .animation(nil)
+//
+//            }
         }
         .frame(height: course.show ? screen.height : 280)
         // The following 3 lines allows us to animate the view as it's being dragged. activeView is a binding, so it only works when we are dragging, or else it would not be set. Set in the drag Gesture
