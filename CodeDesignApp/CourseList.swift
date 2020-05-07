@@ -12,10 +12,12 @@ struct CourseList: View {
     @State var courses = courseData
     @State var active = false
     @State var activeIndex = -1
+    @State var activeView = CGSize.zero
     
     var body: some View {
         ZStack {
-            Color.black.opacity(active ? 0.5 : 0)
+            // This takes the active view height (only set when we are dragging teh view) and changes the background opacity
+            Color.black.opacity(Double(self.activeView.height/500))
                 .animation(.linear)
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
@@ -35,7 +37,9 @@ struct CourseList: View {
                                 course: self.courses[index],
                                 active: self.$active,
                                 index: index,
-                                activeIndex: self.$activeIndex)
+                                activeIndex: self.$activeIndex,
+                                activeView: self.$activeView
+                            )
                                 // Animates the cell to the top, when pressed, or keeps it where iti s
                                 .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY : 0)
                                 // This condition allows us to control the effects of the cards not being selected using activeIndex state. If no card is selected, it will default to the original state. However, since the binding is passed into each CourseView object, every time we toggle the card, the active index will be set. The other cards in the view will not be the active index, and will change opacity, scale, and animate out to the side
@@ -74,6 +78,7 @@ struct CourseView: View {
     @Binding var active: Bool
     var index: Int
     @Binding var activeIndex: Int
+    @Binding var activeView: CGSize
     
     var body: some View {
         // This Z-stack allows us to have content underneath the existing card view. This aligns whichever component in the Z-stack to the top, and to the biggest component
@@ -139,6 +144,27 @@ struct CourseView: View {
                 // Creates the smooth rounded corners
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color(course.color).opacity(0.3), radius: 20, x: 0, y: 20)
+            .gesture(
+                // You can add a gesture based on teh state, so this gesture only works when a card is shown
+                show ?
+                DragGesture().onChanged({ value in
+                    // If translation.y is greater than 300, return.
+                    // If translation.y is less than 0 (scrolling up), return
+                    guard value.translation.height < 300 else { return }
+                    guard value.translation.height > 0 else { return }
+                    self.activeView = value.translation
+                })
+                .onEnded({ value in
+                    // if we scroll more than 50 pixels, then dismiss
+                    if self.activeView.height > 50 {
+                        self.show = false
+                        self.active = false
+                        self.activeIndex = -1
+                    }
+                    self.activeView = .zero
+                })
+                : nil
+            )
             .onTapGesture {
                 // toggles the state when tapped
                 self.show.toggle()
@@ -152,8 +178,30 @@ struct CourseView: View {
             }
         }
         .frame(height: course.show ? screen.height : 280)
+        // The following 3 lines allows us to animate the view as it's being dragged. activeView is a binding, so it only works when we are dragging, or else it would not be set. Set in the drag Gesture
+        .scaleEffect(1 - self.activeView.height / 1000)
+        .rotation3DEffect(Angle(degrees: Double(self.activeView.height / 10)),
+                          axis: (x: 0, y: 10.0, z: 0))
+        .hueRotation(Angle(degrees: Double(self.activeView.height)))
             // We set the frame based on the show state, and this animation kicks in
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+            .gesture(
+                show ?
+                DragGesture().onChanged({ value in
+                    guard value.translation.height < 300 else { return }
+                    guard value.translation.height > 0 else { return }
+                    self.activeView = value.translation
+                })
+                .onEnded({ value in
+                    if self.activeView.height > 50 {
+                        self.show = false
+                        self.active = false
+                        self.activeIndex = -1
+                    }
+                    self.activeView = .zero
+                })
+                : nil
+            )
         // This forces us to ignore safearealayout, stretches to max
         .edgesIgnoringSafeArea(.all)
     }
