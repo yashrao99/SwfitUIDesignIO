@@ -27,6 +27,9 @@
 		BD584ADE244D3BFB00F7D9EC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD584ADD244D3BFB00F7D9EC /* HomeView.swift */; };
 		BD6342D92459137F0006B95E /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6342D82459137F0006B95E /* CourseList.swift */; };
 		BD999A112454BF7C00C70589 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD999A102454BF7C00C70589 /* UpdateStore.swift */; };
+		BDEB048D24676A38002EE06D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB048C24676A38002EE06D /* Data.swift */; };
+		BDEB048F24676AC2002EE06D /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB048E24676AC2002EE06D /* PostList.swift */; };
+		BDEB049124676CD9002EE06D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB049024676CD9002EE06D /* DataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		BD584ADD244D3BFB00F7D9EC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BD6342D82459137F0006B95E /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		BD999A102454BF7C00C70589 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
+		BDEB048C24676A38002EE06D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BDEB048E24676AC2002EE06D /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
+		BDEB049024676CD9002EE06D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,9 @@
 				BD6342D82459137F0006B95E /* CourseList.swift */,
 				BD0AD87C244FD507005CF4D1 /* UpdateList.swift */,
 				BD999A102454BF7C00C70589 /* UpdateStore.swift */,
+				BDEB048C24676A38002EE06D /* Data.swift */,
+				BDEB049024676CD9002EE06D /* DataStore.swift */,
+				BDEB048E24676AC2002EE06D /* PostList.swift */,
 				BD584AD8244CDE6600F7D9EC /* MenuView.swift */,
 				BD1784F52454C3C400977286 /* TabBar.swift */,
 				BD584AAE244BDD5800F7D9EC /* Assets.xcassets */,
@@ -305,6 +314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD584AA9244BDD5700F7D9EC /* AppDelegate.swift in Sources */,
+				BDEB048D24676A38002EE06D /* Data.swift in Sources */,
+				BDEB049124676CD9002EE06D /* DataStore.swift in Sources */,
 				BD999A112454BF7C00C70589 /* UpdateStore.swift in Sources */,
 				BD0AD87D244FD507005CF4D1 /* UpdateList.swift in Sources */,
 				BD584AD9244CDE6600F7D9EC /* MenuView.swift in Sources */,
@@ -314,6 +325,7 @@
 				BD584ADC244D2FAA00F7D9EC /* Home.swift in Sources */,
 				BD584ADE244D3BFB00F7D9EC /* HomeView.swift in Sources */,
 				BD584AAB244BDD5700F7D9EC /* SceneDelegate.swift in Sources */,
+				BDEB048F24676AC2002EE06D /* PostList.swift in Sources */,
 				BD584AAD244BDD5700F7D9EC /* ContentView.swift in Sources */,
 				BD241DE72463B19E000ACED7 /* CourseDetail.swift in Sources */,
 				BD1784F62454C3C400977286 /* TabBar.swift in Sources */,
