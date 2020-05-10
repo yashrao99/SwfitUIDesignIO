@@ -1,0 +1,18 @@
+PODS:
+  - Contentful (5.0.11):
+    - Contentful/ImageOptions (= 5.0.11)
+  - Contentful/ImageOptions (5.0.11)
+
+DEPENDENCIES:
+  - Contentful (~> 5.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Contentful
+
+SPEC CHECKSUMS:
+  Contentful: 6608ce5f58c9278a871a7fd3e6e85c2fcb1d2dca
+
+PODFILE CHECKSUM: 443e3a23be15a8bee2942f21aba6fff4c376c994
+
+COCOAPODS: 1.8.4
